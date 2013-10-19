@@ -1,7 +1,0 @@
-;; Object large-matrix
-;; EDE Project Files are auto generated: Do Not Edit
-(ede-proj-project "large-matrix"
-  :file "Project.ede"
-  :name "large-matrix"
-  :targets 'nil
-  )
