@@ -20,15 +20,16 @@ OBJ2 := $(EXE2).o
 
 CC := g++
 LD := ld
+LIB := -L/usr/lib/x86_64-linux-gnu/ -L/usr/lib/i386-linux-gnu/ -lpthread
 CFLAGS := $(DEBUG) -Wall  
-CXXFLAGS := $(CFLAGS) 
-LDFLAGS := $(DEBUG)
+CXXFLAGS := $(CFLAGS)
+LDFLAGS := $(DEBUG) $(LIB)
 
 OBJ := matrix.o
 
 all: common
-	$(CC) $(LDFLAGS) $(OBJ) $(OBJ1) -o $(EXE1)
-	$(CC) $(LDFLAGS) $(OBJ) $(OBJ2) -o $(EXE2)
+	$(CC) $(OBJ) $(OBJ1) $(LDFLAGS) -o $(EXE1)
+	$(CC) $(OBJ) $(OBJ2) $(LDFLAGS) -o $(EXE2)
 
 common:
 	$(CC) -c $(CXXFLAGS) $(MACRO) *.cc

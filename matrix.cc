@@ -4,17 +4,13 @@
 #include <cstring>
 
 #include "matrix.h"
+#include "common.h"
 
-#ifdef __DEBUG__
-	#define DEBUG(x) do { std::cout << (x); }while(0)
-#else
-	#define DEBUG(x) do { }while(0)
-#endif
 
 namespace std
 {
-	
-const Strategy* const defaultStrategy = new SingleThreadStrategy();
+	 
+Strategy* const defaultStrategy = new SingleThreadStrategy();
 
 Matrix::Matrix(int rows, int columns) {
 	this->rows = rows;
@@ -55,7 +51,7 @@ Matrix* Matrix::Multiply(const Matrix* B) const {
 }
 
 
-Matrix* SingleThreadStrategy::Multiply(const Matrix* A, const Matrix* B) const {
+Matrix* SingleThreadStrategy::Multiply(const Matrix* A, const Matrix* B) {
 	
 	if(A->GetColumns() != B->GetRows())
 		return NULL;

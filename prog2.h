@@ -2,8 +2,12 @@
 #define __PROG2_YU_H__
 
 #include <pthread.h>
+#include "matrix.h"
+#include "common.h"
 
-class MultiThreadStrategy : Strategy
+namespace std {
+
+class MultiThreadStrategy : public Strategy
 {
 private:
 	int NUM_THREAD;
@@ -21,9 +25,9 @@ public:
 	MultiThreadStrategy(int num_thread);
 	~MultiThreadStrategy();
 
-	virtual Matrix* Multiply(const Matrix* A, const Matrix* B) const;
+	virtual Matrix* Multiply(const Matrix* A, const Matrix* B);
 };
 
-
+}
 
 #endif

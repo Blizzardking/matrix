@@ -46,7 +46,7 @@ public:
 	Strategy() {}
 	virtual ~Strategy() {}
 
-	virtual Matrix* Multiply(const Matrix* A, const Matrix* B) const = 0;
+	virtual Matrix* Multiply(const Matrix* A, const Matrix* B) = 0;
 };
 
 class SingleThreadStrategy : public Strategy
@@ -55,7 +55,7 @@ public:
 	SingleThreadStrategy() {}
 	~SingleThreadStrategy() {}
 
-	virtual Matrix* Multiply(const Matrix* A, const Matrix* B) const;
+	virtual Matrix* Multiply(const Matrix* A, const Matrix* B);
 };
 
 }
