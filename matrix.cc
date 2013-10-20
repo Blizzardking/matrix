@@ -70,9 +70,7 @@ Matrix* SingleThreadStrategy::Multiply(const Matrix* A, const Matrix* B) {
 			C->SetNumber(i, j, num);
 			usleep(10);
 		}
-		DEBUG("Row ");
-		DEBUG(i);
-		DEBUG(" computed\n");
+		DEBUG("Row %d computed\n", i);
 	}
 
 

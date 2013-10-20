@@ -3,7 +3,7 @@
 EXE1 := prog1
 EXE2 := prog2
 
-DEBUG_MODE := y
+DEBUG_MODE := n
 
 ifeq ($(DEBUG_MODE), y)
 	DEBUG := -g

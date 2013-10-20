@@ -26,7 +26,9 @@ MultiThreadStrategy::MultiThreadStrategy(int num_thread) {
 		exit(-1);
 
 	this->NUM_THREAD = num_thread;
-	this->thread_id = new pthread_t[NUM_THREAD];	
+	this->thread_id = new pthread_t[NUM_THREAD];
+	pthread_mutex_init(&compute_mutex, NULL);
+	pthread_mutex_init(&row_ready_mutex, NULL);
 }
 
 MultiThreadStrategy::~MultiThreadStrategy() {
@@ -47,25 +49,27 @@ Matrix* MultiThreadStrategy::Multiply(const Matrix* mat_A, const Matrix* mat_B) 
 		int err = pthread_create(&thread_id[i], NULL, compute_row_thread, &thread_id[i]);
 		if(err != 0)
 			exit(err);
+		DEBUG("Thread %ld created\n", thread_id[i]);	
 	}
 
 	row_ready = 0;
-	pthread_mutex_unlock(&compute_mutex);
 	
 	for (int i = 0; i < NUM_THREAD; ++i)
 	{
 		pthread_join(thread_id[i], NULL);
 	}
 
+	pthread_mutex_unlock(&compute_mutex);
+
 	return C;
 }
 
 // Each threads takes the responsibility to compute one row of C
 static void* compute_row_thread(void* thread_num) {
-	int thread = *((int *)thread_num);
-	DEBUG("This is ");
-	DEBUG(thread);
-	DEBUG(" thread\n");
+	// int thread = *((int *)thread_num);
+	// DEBUG("This is ");
+	// DEBUG(thread);
+	// DEBUG(" thread\n");
 
 	for(int row = 0;;) {
 		pthread_mutex_lock(&row_ready_mutex);
@@ -83,9 +87,7 @@ static void* compute_row_thread(void* thread_num) {
 			C->SetNumber(row, j, num);
 			usleep(10);
 		}
-		DEBUG("Row ");
-		DEBUG(row);
-		DEBUG(" computed\n");
+		DEBUG("Row %d computed\n", row);
 	}
 
 	return (void*)0;
