@@ -39,9 +39,9 @@ more than two days, without seeing any indication that it will end in appreciabl
             
 ### The output of prog2
 `run.bash` include: 
-       $ date
-       $ ./prog2
-       $ date
+* $ date
+* $ ./prog2
+* $ date
             
 Then we can see the output below:
        $ Mon Oct 21 15:15:40 CDT 2013
