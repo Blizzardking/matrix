@@ -1,3 +1,8 @@
+// To avoid hard code on the implementation of the Matrix
+// and take the reusability of code into account,
+// I use Strategy Pattern to design the Matrix class
+// and its implementation of multiplication operation
+
 #include <iostream>
 #include <pthread.h>
 #include "matrix.h"
@@ -35,6 +40,7 @@ MultiThreadStrategy::~MultiThreadStrategy() {
 	
 }
 
+// the stratety define the concrete operation when call Matrix::Multiply
 Matrix* MultiThreadStrategy::Multiply(const Matrix* mat_A, const Matrix* mat_B) {
 	if(mat_A->GetColumns() != mat_B->GetRows())
 		return NULL;
