@@ -6,14 +6,14 @@ Matrix multiplication by using multi-thread
 # Source File List
 
 ## CC source file
-* matrix.cc 
-* prog1.cc 
-* prog2.cc
+* matrix.cc  The class of Matrix
+* prog1.cc   The code of prog1, which use single thread
+* prog2.cc   The code of prog2, which use multiple threads
 
 ## Header
-* common.h
-* matrix.h
-* prog2.h
+* common.h   DEBUG operation
+* matrix.h   The declaration of class Matrix, and the abstract class Stratety
+* prog2.h    The declaration of the concrete class derives from Stratety, to define real operation
         
 ## Makefile
     
