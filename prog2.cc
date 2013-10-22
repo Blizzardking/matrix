@@ -111,6 +111,7 @@ int main(int argc, char const *argv[])
 	A->Randomize();
 	B->Randomize();
 
+	// Set the strategy to multithread solution
 	A->SetMultiplyStrategy(new MultiThreadStrategy(MAX_THREAD));
 
 	DEBUG("MultiThreadStrategy set\n");
