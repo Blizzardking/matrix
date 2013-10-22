@@ -16,30 +16,32 @@ class SingleThreadStrategy;
 class Matrix
 {
 private:
-	int rows, columns;
-	int** element;
+	int rows, columns; //number of row and column
+	int** element;   // The elements of the matrix
 	
 	Strategy* strategy;
 
 public:
 	Matrix(int rows, int columns);
 	~Matrix();
-	inline int GetRows() const {return rows;}
+	inline int GetRows() const {return rows;}  // get number of rows
 	inline int GetColumns() const {return columns;}
 
 	void Randomize();
 
 	inline void SetNumber(int i, int j, int num) { element[i][j] = num; }
 	inline int GetNumber(int i, int j) const { return element[i][j]; }
-	Matrix* Multiply(const Matrix* B) const;
+	Matrix* Multiply(const Matrix* B) const;    // this matrix multiplied to B 
 
 	void SetMultiplyStrategy(Strategy* specificStrategy) { strategy = specificStrategy; }
+	// The defaultStrategy is single thread solution
 
-	int operator () (int i, int j) { return element[i][j]; }
-
-	//Matrix* MultiplyWithStrategy();
 };
 
+
+// Strategy Design Pattern
+// This class Strategy is an abstract class, which is intended to 
+// provide some interfaces that will be implemented by its inherited class
 class Strategy
 {
 public:
